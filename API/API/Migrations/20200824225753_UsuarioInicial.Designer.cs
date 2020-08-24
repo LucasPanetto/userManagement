@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Migrations
 {
-    [DbContext(typeof(DataContext))]
+    [DbContext(typeof(UsuarioDbContext))]
     [Migration("20200824225753_UsuarioInicial")]
     partial class UsuarioInicial
     {
