@@ -8,14 +8,12 @@ namespace API.Interfaces
 {
     public interface IUsuarioService : IDisposable
     {
-        public Task<List<Usuario>> ObterTodosUsuarios();
-
+        public List<Usuario> ObterTodosUsuarios();
+        public bool Login(string email, string senha);
+        public Usuario ObterUsuarioPorDocumento(int documento);
         public Task<Usuario> ObterUsuarioPorId(int id);
-
         public Task<Usuario> CriarUsuario(Usuario usuario);
-
         public Task<bool> AtualizarUsuario(Usuario usuario);
-
         public Task<bool> DeletarUsuario(int id);
     }
 }

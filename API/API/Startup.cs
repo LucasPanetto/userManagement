@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Interfaces;
 using API.Models;
+using API.Repository;
+using API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,8 +41,7 @@ namespace API
 
             services.AddControllers();
 
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-            services.AddScoped<IUsuarioService, IUsuarioService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
 
             //Adicionando Compressão de resposta
             services.Configure<GzipCompressionProviderOptions>(options =>
@@ -53,11 +54,20 @@ namespace API
                 options.Providers.Add<GzipCompressionProvider>();
             });
 
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

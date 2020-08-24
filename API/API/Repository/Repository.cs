@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Models
+namespace API.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

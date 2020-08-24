@@ -28,8 +28,6 @@ C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\S
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.csproj.CopyComplete
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.csproj.CoreCompileInputs.cache
-C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\API.deps.json
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\API.runtimeconfig.json
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\API.runtimeconfig.dev.json
@@ -59,3 +57,10 @@ C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\r
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.dll
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.pdb
 C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.csproj.CoreCompileInputs.cache
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Lucas\Desktop\projects\userManagement\API\API\obj\Debug\netcoreapp3.1\API.MvcApplicationPartsAssemblyInfo.cache
