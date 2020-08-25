@@ -63,7 +63,7 @@ namespace API.Repository
         {
             if (disposing)
             {
-                Db.Dispose();
+                Db?.Dispose();
             }
         }
     }

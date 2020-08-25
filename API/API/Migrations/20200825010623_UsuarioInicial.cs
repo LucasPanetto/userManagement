@@ -12,9 +12,10 @@ namespace API.Migrations
                 {
                     IdUsuario = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(nullable: true),
-                    Nome = table.Column<string>(nullable: true),
-                    Documento = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Senha = table.Column<string>(nullable: false),
+                    Nome = table.Column<string>(nullable: false),
+                    Documento = table.Column<string>(nullable: false),
                     Status = table.Column<bool>(nullable: false),
                     Admin = table.Column<bool>(nullable: false)
                 },

@@ -11,34 +11,94 @@ namespace API.Services
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
-        public Task<bool> AtualizarUsuario(Usuario usuario)
+        public UsuarioService(IUsuarioRepository usuarioRepo)
         {
-            throw new NotImplementedException();
+            _usuarioRepository = usuarioRepo;
+        }
+        public async Task<bool> AtualizarUsuario(Usuario usuario)
+        {
+            try
+            {
+                bool sucessoAtualizacao = _usuarioRepository.Update(usuario) != null;
+                await _usuarioRepository.SaveChangesAsync();
+                return sucessoAtualizacao;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public Task<Usuario> CriarUsuario(Usuario usuario)
+        public async Task<Usuario> CriarUsuario(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario usuarioCriado = _usuarioRepository.Create(usuario);
+                await _usuarioRepository.SaveChangesAsync();
+                return usuarioCriado;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public Task<bool> DeletarUsuario(int id)
+        public async Task<bool> DeletarUsuario(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _usuarioRepository.Delete(id);
+                return await _usuarioRepository.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool Login(string documento, string senha)
+        {
+            List<Usuario> listaUsuarios = ObterTodosUsuarios();
+            if (listaUsuarios.Where(x => x.Documento == documento && x.Senha == senha).Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public List<Usuario> ObterTodosUsuarios()
+        {
+            List<Usuario> listaUsuarios = _usuarioRepository.GetAll().Result;
+            return listaUsuarios;
+        }
+
+        public Usuario ObterUsuarioPorDocumento(string documento)
+        {
+            Usuario listaUsuarios = ObterTodosUsuarios().Where(x => x.Documento == documento).FirstOrDefault();
+            return listaUsuarios;
+        }
+
+        public Usuario ObterUsuarioPorId(int id)
+        {
+            Usuario usuario = _usuarioRepository.GetById(id).Result;
+            return usuario;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
-        public Task<List<Usuario>> ObterTodosUsuarios()
+        protected virtual void Dispose(bool disposing)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Usuario> ObterUsuarioPorId(int id)
-        {
-            throw new NotImplementedException();
+            if (disposing)
+            {
+                _usuarioRepository?.Dispose();
+            }
         }
     }
 }

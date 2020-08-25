@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(UsuarioDbContext))]
-    [Migration("20200824225753_UsuarioInicial")]
+    [Migration("20200825010623_UsuarioInicial")]
     partial class UsuarioInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,13 +30,20 @@ namespace API.Migrations
                     b.Property<bool>("Admin")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Documento")
-                        .HasColumnType("int");
+                    b.Property<string>("Documento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
