@@ -8,3 +8,21 @@
 .thumbnail-description {
     min-height: 40px;
 }
+
+.row {
+    display: grid;
+    justify-items: center;
+}
+
+h1 span {
+    margin-left: 15px !important;
+}
+
+th span{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+select{
+    margin-left: 15px;
+}

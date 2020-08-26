@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsuarioModel } from '../../Models/UsuarioModel';
+import { UsuarioService } from 'src/app/services/UsuarioService';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,41 +10,43 @@ import { UsuarioModel } from '../../Models/UsuarioModel';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public inputDocumento = '';
-  public inputSenha = '';
-  usuarioForm: any;
-  public entidadeUsuario: UsuarioModel = new UsuarioModel();
+  public inputdocumento = '';
+  public inputsenha = '';
+  loginForm: any;
+  public exibirModalCadastro = false as boolean;
 
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private _usuarioService: UsuarioService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.verificaLogin();
     this.preencherForm();
   }
 
+  private verificaLogin() {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (usuarioLogado) {
+      this.router.navigate(['/home']);
+    }
+  }
+
   public preencherForm(): void {
-    this.usuarioForm = this._formBuilder.group({
-      IdUsuario: [this.entidadeUsuario.IdUsuario],
-      Email: [this.entidadeUsuario.Email, [Validators.required, Validators.email]],
-      Senha: [this.entidadeUsuario.Senha, [Validators.required]],
-      Nome: [this.entidadeUsuario.Nome, [Validators.required]],
-      Documento: [this.entidadeUsuario.Documento, [Validators.required]],
-      Status: [this.entidadeUsuario.Status],
-      Admin: [this.entidadeUsuario.Admin]
+    this.loginForm = this._formBuilder.group({
+      documento: ['', [Validators.required]],
+      senha: ['', [Validators.required]]
     });
   }
 
-  public async submitFormulario(aluno: UsuarioModel): Promise<void> {
-      // await this._alunoService.criarAluno(aluno);
-    
-    this.usuarioForm.reset();
+  public async submitFormularioLogin(login: any): Promise<void> {
+    const usuarioLogado = await this._usuarioService.login(login);
+    if (usuarioLogado) {
+      localStorage.removeItem('usuarioLogado');
+      localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+      this.router.navigate(['/home']);
+    }
   }
 
-  public criarConta() {
-    console.log('a');
-  }
-
-  public recuperarSenha() {
+  public recuperarsenha() {
     console.log('a');
   }
 }

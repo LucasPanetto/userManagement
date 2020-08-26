@@ -1,93 +1,26 @@
 <div class="container" class="h100" style="background-color: lightblue;">
     <div class="row h100" style="display: grid;place-items: center; margin: auto;">
         <div class="col-md-3 box">
-            <form action="" method="post">
-                <div class="text-center mt-5"><img src="../../../assets/userIcon.png" alt="Icone" width="150em"></div>
+            <form [formGroup]="loginForm" (ngSubmit)="submitFormularioLogin(loginForm.value)">
+                <div class=" text-center mt-5"><img src="../../../assets/userIcon.png" alt="Icone" width="150em">
+                </div>
                 <h2 class="text-center mt-5" style="font-weight: bold;">Cadastro de Usuários</h2>
                 <div class="form-group mt-5">
-                    <input type="text" class="form-control" placeholder="Documento" required="required">
+                    <input type="text" formControlName="documento" class="form-control" placeholder="Documento" required="required">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Senha" required="required">
+                    <input type="password" formControlName="senha" class="form-control" placeholder="Senha" required="required">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block">Entrar</button>
                 </div>
                 <div class="clearfix rodape">
-                    <a (click)="criarConta()">Crie sua Conta</a>
-                    <a (click)="recuperarSenha()">Esqueceu sua senha?</a>
+                    <a data-toggle="modal" data-target="#myModal">Crie sua Conta</a>
+                    <a (click)="recuperarsenha()">Esqueceu sua senha?</a>
                 </div>
             </form>
         </div>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
     </div>
 </div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h1 class="modal-title">Cadastro de Usuário</h1>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="usuarioForm" (ngSubmit)="submitFormulario(usuarioForm.value)">
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="inputnome">Nome</label>
-                            <input formControlName="Nome" type="text" class="form-control" id="inputnome" placeholder="Nome" required>
-                            <small *ngIf="!usuarioForm.get('Nome').valid && usuarioForm.get('Nome').touched" class="form-text text-danger">É obrigatório inserir um Nome</small>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputemail">Email</label>
-                            <input formControlName="Email" type="email" class="form-control" id="inputemail" aria-describedby="emailHelp" placeholder="Email" required>
-                            <small *ngIf="!usuarioForm.get('Email').valid && usuarioForm.get('Email').touched" class="form-text text-danger">Insira um email válido</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="inputdocumento">Documento</label>
-                            <input formControlName="Documento" type="text" class="form-control" id="inputdocumento" placeholder="Documento" required>
-                            <small *ngIf="!usuarioForm.get('Documento').valid && usuarioForm.get('Documento').touched" class="form-text text-danger">Insira um Documento válido</small>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputsenha">Senha</label>
-                            <input formControlName="Senha" type="password" class="form-control" id="inputsenha" placeholder="Senha" required>
-                            <small *ngIf="!usuarioForm.get('Senha').valid && usuarioForm.get('Senha').touched" class="form-text text-danger">Insira uma senha válido</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="inputdocumento">Status</label>
-                            <div class="onoffswitch1">
-                                <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="myonoffswitch1" checked>
-                                <label class="onoffswitch1-label" for="myonoffswitch1">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputdocumento">Admin</label>
-                            <div class="onoffswitch1">
-                                <input type="checkbox" name="onoffswitch2" class="onoffswitch1-checkbox" id="myonoffswitch2" checked>
-                                <label class="onoffswitch1-label" for="myonoffswitch2">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row footer">
-                        <div class="col-md-12 d-flex justify-content-end float-right">
-                            <button type="submit" class="btn btn-primary float-right" title="Salvar" [disabled]="!usuarioForm.valid">Salvar</button>
-                            <button class="btn btn-danger float-right ml-3" title="Cancelar">Cancelar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-</div>
+<app-modal-gerenciar-usuario></app-modal-gerenciar-usuario>
