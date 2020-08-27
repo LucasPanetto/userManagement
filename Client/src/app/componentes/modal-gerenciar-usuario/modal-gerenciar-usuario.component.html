@@ -11,14 +11,14 @@
                         <div class="form-group col-md-6">
                             <label for="inputnome">Nome</label>
                             <input formControlName="nome" type="text" class="form-control" id="inputnome"
-                                placeholder="nome" required>
+                                placeholder="Nome" required>
                             <small *ngIf="!usuarioForm.get( 'nome').valid && usuarioForm.get( 'nome').touched"
                                 class="form-text text-danger">É obrigatório inserir um nome</small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputemail">Email</label>
                             <input formControlName="email" type="email" class="form-control" id="inputemail"
-                                aria-describedby="emailHelp" placeholder="email" required>
+                                aria-describedby="emailHelp" placeholder="Email" required>
                             <small *ngIf="!usuarioForm.get( 'email').valid && usuarioForm.get( 'email').touched"
                                 class="form-text text-danger">Insira um email válido</small>
                         </div>
@@ -26,15 +26,15 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="inputdocumento">Documento</label>
-                            <input formControlName="documento" type="text" class="form-control" id="inputdocumento"
-                                placeholder="documento" required>
+                            <input formControlName="documento" mask="CPF_CNPJ" type="text" class="form-control" id="inputdocumento"
+                                placeholder="Documento" required>
                             <small *ngIf="!usuarioForm.get( 'documento').valid && usuarioForm.get( 'documento').touched"
                                 class="form-text text-danger">Insira um documento válido</small>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputsenha">Senha</label>
                             <input formControlName="senha" type="password" class="form-control" id="inputsenha"
-                                placeholder="senha" required>
+                                placeholder="Senha" required>
                             <small *ngIf="!usuarioForm.get( 'senha').valid && usuarioForm.get( 'senha').touched"
                                 class="form-text text-danger">Insira uma senha válida</small>
                         </div>

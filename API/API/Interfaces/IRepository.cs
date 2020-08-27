@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Interfaces
 {
-    public interface IRepository<TEntity> : IDisposable where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         Task<List<TEntity>> GetAll();
 

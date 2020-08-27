@@ -12,13 +12,20 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { ModalGerenciarUsuarioComponent } from './componentes/modal-gerenciar-usuario/modal-gerenciar-usuario.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { ModalRecuperarSenhaComponent } from './componentes/modal-recuperar-senha/modal-recuperar-senha.component'
+
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ModalGerenciarUsuarioComponent
+    ModalGerenciarUsuarioComponent,
+    ModalRecuperarSenhaComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,8 @@ import { ModalGerenciarUsuarioComponent } from './componentes/modal-gerenciar-us
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [HttpClientModule, UsuarioService],
   bootstrap: [AppComponent]

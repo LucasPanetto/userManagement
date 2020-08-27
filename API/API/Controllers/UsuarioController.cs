@@ -24,11 +24,13 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<Usuario> ObterUsuarios()
+        [Route("{inicio}/{quantidade}/{admin}/{documento}/{filtro}")]
+
+        public List<Usuario> ObterUsuarios(int inicio, int quantidade, bool admin, string documento, string filtro)
         {
             try
             {
-                List<Usuario> listaUsuarios = _usuarioService.ObterTodosUsuarios();
+                List<Usuario> listaUsuarios = _usuarioService.ObterUsuarios(inicio, quantidade, admin, documento, filtro);
                 return listaUsuarios;
             }
             catch (Exception e)
@@ -38,13 +40,44 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("login/{documento}/{senha}")]
-        public bool Login(string documento, string senha)
+        [Route("{idUsuario}")]
+        public Usuario ObterUsuario(int idUsuario)
         {
             try
             {
-                bool sucessoLogin = _usuarioService.Login(documento, senha);
-                return sucessoLogin;
+                Usuario usuario = _usuarioService.ObterUsuarioPorId(idUsuario);
+                return usuario;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
+        [HttpGet]
+        [Route("quantidade/{admin}/{documento}/{filtro}")]
+        public int ObterQuantidadeUsuarios(bool admin, string documento, string filtro)
+        {
+            try
+            {
+                int quantidade = _usuarioService.ObterQuantidadeUsuarios(admin, documento, filtro);
+                return quantidade;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        [HttpGet]
+        [Route("login/{documento}/{senha}")]
+        public Usuario Login(string documento, string senha)
+        {
+            try
+            {
+                Usuario usuarioLogado = _usuarioService.Login(documento, senha);
+                return usuarioLogado;
             }
             catch (Exception e)
             {
@@ -54,7 +87,7 @@ namespace API.Controllers
 
         [HttpGet]
         [Route("recuperarSenha/{documento}")]
-        public string RecuperaSenha(string documento)
+        public bool RecuperaSenha(string documento)
         {
             try
             {
@@ -63,16 +96,12 @@ namespace API.Controllers
 
                 if (usuario != null)
                 {
-                    sucessoEnvio = _emailService.EnviarEmail(usuario);
-                }
-
-                if (sucessoEnvio)
-                {
-                    return usuario.Email;
+                     sucessoEnvio =  _emailService.EnviarEmail(usuario);
+                    return true;
                 }
                 else
                 {
-                    return "";
+                    return false;
                 }
             }
             catch (Exception e)
@@ -117,7 +146,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public async Task<bool> AtualizarAluno([FromBody] Usuario usuario)
+        public async Task<bool> AtualizarUsuario([FromBody] Usuario usuario)
         {
             bool usuarioAtualizado = await _usuarioService.AtualizarUsuario(usuario);
             return usuarioAtualizado;

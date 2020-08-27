@@ -53,18 +53,5 @@ namespace API.Repository
 
         public async Task<int> SaveChangesAsync() => await Db.SaveChangesAsync();
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                Db?.Dispose();
-            }
-        }
     }
 }

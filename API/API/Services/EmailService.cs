@@ -50,7 +50,7 @@ namespace API.Services
                 }
 
                 usuario.Senha = novaSenha;
-                _usuarioService.AtualizarUsuario(usuario);
+                _usuarioService.AtualizarUsuarioByEmail(usuario);
 
                 return true;
             }

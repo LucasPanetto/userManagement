@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   private verificaLogin() {
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    const usuarioLogado = (localStorage.getItem('idUsuarioLogado'));
     if (usuarioLogado) {
       this.router.navigate(['/home']);
     }
@@ -40,13 +40,9 @@ export class LoginComponent implements OnInit {
   public async submitFormularioLogin(login: any): Promise<void> {
     const usuarioLogado = await this._usuarioService.login(login);
     if (usuarioLogado) {
-      localStorage.removeItem('usuarioLogado');
-      localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+      localStorage.removeItem('idUsuarioLogado');
+      localStorage.setItem('idUsuarioLogado', usuarioLogado.idUsuario.toString());
       this.router.navigate(['/home']);
     }
-  }
-
-  public recuperarsenha() {
-    console.log('a');
   }
 }

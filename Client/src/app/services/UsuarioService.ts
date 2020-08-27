@@ -38,38 +38,51 @@ export class UsuarioService {
         }
     }
 
-    async obterUsuarios(inicio: number, quantidade: number): Promise<UsuarioModel[]> {
-        const retorno = await this._http.get<UsuarioModel[]>(`${this.urlPathApi}${inicio}/${quantidade}`).toPromise().then();
+    async recuperarSenha(documento: string): Promise<void> {
+        try {
+            const emailEnviado = await this._http.get<boolean>(`${this.urlPathApi}recuperarSenha/${documento}`).toPromise().then();
+            if (!emailEnviado) {
+                this._toastr.error('Documento Não Encontrado.', 'Erro!');
+            } else {
+                this._toastr.success(`Nova senha enviada para seu e-mail cadastrado.`, 'Sucesso!');
+            }
+        } catch (error) {
+            console.log(error);
+            this._toastr.error('Houve um erro ao enviar nova senha.', 'Erro!');
+        }
+    }
+
+    async obterUsuarios(inicio: number, quantidade: number, admin: boolean, documento: string, filtro: string): Promise<UsuarioModel[]> {
+        const retorno = await this._http.get<UsuarioModel[]>(`${this.urlPathApi}${inicio}/${quantidade}/${admin}/${documento}/${filtro}`).toPromise().then();
         return retorno;
     }
 
-    async obterQuantidadeUsuarios(): Promise<number> {
-        const retorno = await this._http.get<number>(`${this.urlPathApi}quantidade`).toPromise().then();
-        return retorno;
-    }
-
-    async obterAlunoPorId(alunoid: number): Promise<UsuarioModel> {
-        const apiurl = `${this.urlPathApi}/${alunoid}`;
+    async obterUsuarioPorId(idUsuario: number): Promise<UsuarioModel> {
+        const apiurl = `${this.urlPathApi}${idUsuario}`;
         return await this._http.get<UsuarioModel>(apiurl).toPromise().then();
     }
 
 
+    async obterQuantidadeUsuarios(admin: boolean, documento: string, filtro: string): Promise<number> {
+        const retorno = await this._http.get<number>(`${this.urlPathApi}quantidade/${admin}/${documento}/${filtro}`).toPromise().then();
+        return retorno;
+    }
 
-    async atualizarAluno(aluno: UsuarioModel): Promise<void> {
+    async atualizarUsuario(usuario: UsuarioModel): Promise<void> {
         try {
             const apiurl = `${this.urlPathApi}`;
-            await this._http.put<UsuarioModel>(apiurl, aluno, httpOptions).toPromise().then();
-            this._toastr.success('Aluno atualizado.', 'Sucesso!');
+            await this._http.put<UsuarioModel>(apiurl, usuario, httpOptions).toPromise().then();
+            this._toastr.success('Usuario atualizado.', 'Sucesso!');
         } catch (error) {
             this._toastr.error('Houve um erro ao atualizar.', 'Erro!');
         }
     }
 
-    async deletarAlunoPorId(alunoid: number): Promise<void> {
+    async deletarUsuario(usuarioid: number): Promise<void> {
         try {
-            const apiurl = `${this.urlPathApi}/${alunoid}`;
+            const apiurl = `${this.urlPathApi}${usuarioid}`;
             await this._http.delete<number>(apiurl, httpOptions).toPromise().then();
-            this._toastr.success('Aluno excluído.', 'Sucesso!');
+            this._toastr.success('Usuario excluído.', 'Sucesso!');
         } catch (error) {
             this._toastr.error('Houve um erro ao excluir.', 'Erro!');
         }

@@ -6,17 +6,20 @@
                 </div>
                 <h2 class="text-center mt-5" style="font-weight: bold;">Cadastro de Usuários</h2>
                 <div class="form-group mt-5">
-                    <input type="text" formControlName="documento" class="form-control" placeholder="Documento" required="required">
+                    <input type="text" mask="CPF_CNPJ" formControlName="documento" class="form-control"
+                        placeholder="Documento" required="required">
                 </div>
                 <div class="form-group">
-                    <input type="password" formControlName="senha" class="form-control" placeholder="Senha" required="required">
+                    <input type="password" formControlName="senha" class="form-control" placeholder="Senha"
+                        required="required">
                 </div>
                 <div class="form-group">
-                    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary btn-block">Entrar</button>
+                    <button type="submit" [disabled]="!loginForm.valid"
+                        class="btn btn-primary btn-block">Entrar</button>
                 </div>
                 <div class="clearfix rodape">
                     <a data-toggle="modal" data-target="#myModal">Crie sua Conta</a>
-                    <a (click)="recuperarsenha()">Esqueceu sua senha?</a>
+                    <a data-toggle="modal" data-target="#myModal2">Esqueceu sua senha?</a>
                 </div>
             </form>
         </div>
@@ -24,3 +27,4 @@
 </div>
 
 <app-modal-gerenciar-usuario></app-modal-gerenciar-usuario>
+<app-modal-recuperar-senha></app-modal-recuperar-senha>
