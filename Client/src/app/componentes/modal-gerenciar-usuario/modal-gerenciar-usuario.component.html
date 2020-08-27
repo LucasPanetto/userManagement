@@ -1,0 +1,76 @@
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title">Cadastro de Usuário</h1>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="usuarioForm" (ngSubmit)="submitFormularioCadastro(usuarioForm.value)">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputnome">Nome</label>
+                            <input formControlName="nome" type="text" class="form-control" id="inputnome"
+                                placeholder="Nome" required>
+                            <small *ngIf="!usuarioForm.get( 'nome').valid && usuarioForm.get( 'nome').touched"
+                                class="form-text text-danger">É obrigatório inserir um nome</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputemail">Email</label>
+                            <input formControlName="email" type="email" class="form-control" id="inputemail"
+                                aria-describedby="emailHelp" placeholder="Email" required>
+                            <small *ngIf="!usuarioForm.get( 'email').valid && usuarioForm.get( 'email').touched"
+                                class="form-text text-danger">Insira um email válido</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputdocumento">Documento</label>
+                            <input formControlName="documento" mask="CPF_CNPJ" type="text" class="form-control" id="inputdocumento"
+                                placeholder="Documento" required>
+                            <small *ngIf="!usuarioForm.get( 'documento').valid && usuarioForm.get( 'documento').touched"
+                                class="form-text text-danger">Insira um documento válido</small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputsenha">Senha</label>
+                            <input formControlName="senha" type="password" class="form-control" id="inputsenha"
+                                placeholder="Senha" required>
+                            <small *ngIf="!usuarioForm.get( 'senha').valid && usuarioForm.get( 'senha').touched"
+                                class="form-text text-danger">Insira uma senha válida</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="inputdocumento">Status</label>
+                            <div class="onoffswitch1">
+                                <input type="checkbox" formControlName="status" name="onoffswitch1"
+                                    class="onoffswitch1-checkbox" id="myonoffswitch1" checked>
+                                <label class="onoffswitch1-label" for="myonoffswitch1">
+                                    <span class="onoffswitch1-inner"></span>
+                                    <span class="onoffswitch1-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputdocumento">Admin</label>
+                            <div class="onoffswitch1">
+                                <input type="checkbox" formControlName="admin" name="onoffswitch2"
+                                    class="onoffswitch1-checkbox" id="myonoffswitch2" checked>
+                                <label class="onoffswitch1-label" for="myonoffswitch2">
+                                    <span class="onoffswitch1-inner"></span>
+                                    <span class="onoffswitch1-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <button type="submit" class="btn btn-primary float-right" title="Salvar"
+                            [disabled]="!usuarioForm.valid">Salvar</button>
+                        <button class="btn btn-danger float-right ml-3" title="Cancelar" data-dismiss="modal"
+                            id="btnCancelar">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

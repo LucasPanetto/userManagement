@@ -1,0 +1,27 @@
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title">Recuperar Senha</h1>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 for="documento">Informe seu Documento:</h3>
+                        <input mask="CPF_CNPJ" type="text" class="form-control" placeholder="Documento"
+                            [(ngModel)]="documentoRecuperar">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-top:5px">
+                        <button class="btn btn-success" (click)="enviarEmail()" [disabled]="!documentoRecuperar">Enviar
+                            Nova Senha</button>
+                        <button class="btn btn-danger float-right ml-3" title="Cancelar" data-dismiss="modal"
+                            id="btnCancelar" style="margin-left: 5px;">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
