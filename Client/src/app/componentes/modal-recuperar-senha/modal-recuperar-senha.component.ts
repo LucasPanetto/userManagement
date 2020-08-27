@@ -15,9 +15,7 @@ export class ModalRecuperarSenhaComponent implements OnInit {
   }
 
   public async enviarEmail() {
-    await this._usuarioService.recuperarSenha(this.documentoRecuperar);
-    const botaoCancelar: HTMLElement = document.getElementById('btnCancelar') as HTMLElement;
-    botaoCancelar.click();
+    await this._usuarioService.recuperarSenha(this.documentoRecuperar);  
   }
 
 }

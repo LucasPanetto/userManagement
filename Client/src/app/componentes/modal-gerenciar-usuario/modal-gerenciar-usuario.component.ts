@@ -51,6 +51,7 @@ export class ModalGerenciarUsuarioComponent implements OnInit {
     if (usuario.status == null) {
       usuario.status = false;
     }
+    debugger;
     if (this.usuarioEdicao && this.usuarioEdicao.idUsuario > 0) {
       await this._usuarioService.atualizarUsuario(usuario);
       this.emitirAtualizarLista.emit(true);
